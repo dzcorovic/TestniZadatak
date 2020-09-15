@@ -1,7 +1,6 @@
 *** Settings ***
 Library  RequestsLibrary
 Library  JSONLibrary
-Library  Process
 
 *** Variables ***
 ${base_url}  http://srv.kemoke.net:5000
