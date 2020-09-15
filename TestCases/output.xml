@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.2 (Python 3.8.5 on win32)" generated="20200915 15:02:05.377" rpa="false">
+<suite id="s1" name="TC5 Get Token" source="C:\Users\Ćorović\PycharmProjects\APIAutomation\TestCases\TC5_Get_Token.robot">
+<test id="s1-t1" name="TC5_Get_Token">
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>taba</arg>
+<arg>python</arg>
+</arguments>
+<assign>
+<var>${auth}</var>
+</assign>
+<msg timestamp="20200915 15:02:05.657" level="INFO">${auth} = ['taba', 'python']</msg>
+<status status="PASS" starttime="20200915 15:02:05.657" endtime="20200915 15:02:05.657"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<arg>auth=${auth}</arg>
+</arguments>
+<msg timestamp="20200915 15:02:05.657" level="INFO">Creating Session using : alias=mysession, url=http://srv.kemoke.net:5000, headers={},                     cookies={}, auth=&lt;requests.auth.HTTPBasicAuth object at 0x031CF028&gt;, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200915 15:02:05.657" endtime="20200915 15:02:05.657"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>mysession</arg>
+<arg>api/token</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200915 15:02:06.207" level="INFO">GET Request : url=http://srv.kemoke.net:5000/api/token 
+ path_url=/api/token 
+ headers={'User-Agent': 'python-requests/2.24.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Basic dGFiYTpweXRob24='} 
+ body=None 
+ </msg>
+<msg timestamp="20200915 15:02:06.207" level="INFO">GET Response : url=http://srv.kemoke.net:5000/api/token 
+ status=200, reason=OK 
+ body={
+  "duration": 600, 
+  "token": "eyJhbGciOiJIUzI1NiIsImlhdCI6MTYwMDE3NDkyOCwiZXhwIjoxNjAwMTc1NTI4fQ.eyJpZCI6Mn0._fNgSyO5uJS_OD6qgxkwqttEibUk8942kNw4Kr1G778"
+}
+ 
+ </msg>
+<msg timestamp="20200915 15:02:06.207" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20200915 15:02:05.657" endtime="20200915 15:02:06.207"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response.content}</arg>
+</arguments>
+<status status="PASS" starttime="20200915 15:02:06.207" endtime="20200915 15:02:06.207"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20200915 15:02:06.217" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200915 15:02:06.217" endtime="20200915 15:02:06.217"></status>
+</kw>
+<status status="PASS" starttime="20200915 15:02:05.657" endtime="20200915 15:02:06.217" critical="yes"></status>
+</test>
+<status status="PASS" starttime="20200915 15:02:05.387" endtime="20200915 15:02:06.227"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0">Critical Tests</stat>
+<stat pass="1" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" id="s1" name="TC5 Get Token">TC5 Get Token</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

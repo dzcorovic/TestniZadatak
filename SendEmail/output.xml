@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.2 (Python 3.8.5 on win32)" generated="20200915 14:32:43.382" rpa="false">
+<suite id="s1" name="Email" source="C:\Users\Ćorović\PycharmProjects\APIAutomation\SendEmail\email.robot">
+<test id="s1-t1" name="Send_Email">
+<kw name="Load JSON From File" library="JSONLibrary">
+<doc>Load JSON from file.</doc>
+<arguments>
+<arg>../testnizad/Documentation/document.json</arg>
+</arguments>
+<assign>
+<var>${json}</var>
+</assign>
+<msg timestamp="20200915 14:32:43.752" level="INFO">${json} = {'data': {'a': {'name': 'Edin', 'email': 'edin@digi.me', 'admin': 'true', 'company': 'digi.me'}, 'b': {'name': 'Alen', 'email': 'alen.galesic@digi.me', 'admin': 'false', 'company': 'digi.me'}, 'c': {'...</msg>
+<status status="PASS" starttime="20200915 14:32:43.752" endtime="20200915 14:32:43.752"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${json}</arg>
+<arg>data</arg>
+</arguments>
+<assign>
+<var>${json_obj}</var>
+</assign>
+<msg timestamp="20200915 14:32:43.752" level="INFO">${json_obj} = {'a': {'name': 'Edin', 'email': 'edin@digi.me', 'admin': 'true', 'company': 'digi.me'}, 'b': {'name': 'Alen', 'email': 'alen.galesic@digi.me', 'admin': 'false', 'company': 'digi.me'}, 'c': {'name': 'E...</msg>
+<status status="PASS" starttime="20200915 14:32:43.752" endtime="20200915 14:32:43.752"></status>
+</kw>
+<kw name="Get Dictionary Keys" library="Collections">
+<doc>Returns keys of the given ``dictionary`` as a list.</doc>
+<arguments>
+<arg>${json_obj}</arg>
+</arguments>
+<assign>
+<var>${keys}</var>
+</assign>
+<msg timestamp="20200915 14:32:43.762" level="INFO">${keys} = ['a', 'b', 'c', 'd', 'e', 'f', 'g']</msg>
+<status status="PASS" starttime="20200915 14:32:43.762" endtime="20200915 14:32:43.762"></status>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<arguments>
+<arg>${keys}</arg>
+</arguments>
+<assign>
+<var>${number}</var>
+</assign>
+<msg timestamp="20200915 14:32:43.762" level="INFO">Length is 7</msg>
+<msg timestamp="20200915 14:32:43.762" level="INFO">${number} = 7</msg>
+<status status="PASS" starttime="20200915 14:32:43.762" endtime="20200915 14:32:43.762"></status>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<assign>
+<var>${emails}</var>
+</assign>
+<msg timestamp="20200915 14:32:43.762" level="INFO">${emails} = []</msg>
+<status status="PASS" starttime="20200915 14:32:43.762" endtime="20200915 14:32:43.762"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>0</arg>
+</arguments>
+<assign>
+<var>${i}</var>
+</assign>
+<msg timestamp="20200915 14:32:43.762" level="INFO">${i} = 0</msg>
+<status status="PASS" starttime="20200915 14:32:43.762" endtime="20200915 14:32:43.762"></status>
+</kw>
+<kw name="${i} IN RANGE [ ${number} ]" type="for">
+<kw name="${i} = 0" type="foritem">
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json}</arg>
+<arg>$.data[${keys[${i}]}].['email']</arg>
+</arguments>
+<assign>
+<var>${email}</var>
+</assign>
+<msg timestamp="20200915 14:32:43.832" level="INFO">${email} = ['edin@digi.me']</msg>
+<status status="PASS" starttime="20200915 14:32:43.762" endtime="20200915 14:32:43.832"></status>
+</kw>
+<kw name="Append To List" library="Collections">
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<arguments>
+<arg>${emails}</arg>
+<arg>${email[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200915 14:32:43.832" endtime="20200915 14:32:43.832"></status>
+</kw>
+<status status="PASS" starttime="20200915 14:32:43.762" endtime="20200915 14:32:43.832"></status>
+</kw>
+<kw name="${i} = 1" type="foritem">
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json}</arg>
+<arg>$.data[${keys[${i}]}].['email']</arg>
+</arguments>
+<assign>
+<var>${email}</var>
+</assign>
+<msg timestamp="20200915 14:32:43.882" level="INFO">${email} = ['alen.galesic@digi.me']</msg>
+<status status="PASS" starttime="20200915 14:32:43.832" endtime="20200915 14:32:43.882"></status>
+</kw>
+<kw name="Append To List" library="Collections">
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<arguments>
+<arg>${emails}</arg>
+<arg>${email[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200915 14:32:43.882" endtime="20200915 14:32:43.892"></status>
+</kw>
+<status status="PASS" starttime="20200915 14:32:43.832" endtime="20200915 14:32:43.892"></status>
+</kw>
+<kw name="${i} = 2" type="foritem">
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json}</arg>
+<arg>$.data[${keys[${i}]}].['email']</arg>
+</arguments>
+<assign>
+<var>${email}</var>
+</assign>
+<msg timestamp="20200915 14:32:43.942" level="INFO">${email} = ['ermin@digi.me']</msg>
+<status status="PASS" starttime="20200915 14:32:43.892" endtime="20200915 14:32:43.942"></status>
+</kw>
+<kw name="Append To List" library="Collections">
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<arguments>
+<arg>${emails}</arg>
+<arg>${email[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200915 14:32:43.942" endtime="20200915 14:32:43.942"></status>
+</kw>
+<status status="PASS" starttime="20200915 14:32:43.892" endtime="20200915 14:32:43.942"></status>
+</kw>
+<kw name="${i} = 3" type="foritem">
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json}</arg>
+<arg>$.data[${keys[${i}]}].['email']</arg>
+</arguments>
+<assign>
+<var>${email}</var>
+</assign>
+<msg timestamp="20200915 14:32:44.002" level="INFO">${email} = ['enver@digi.me']</msg>
+<status status="PASS" starttime="20200915 14:32:43.942" endtime="20200915 14:32:44.002"></status>
+</kw>
+<kw name="Append To List" library="Collections">
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<arguments>
+<arg>${emails}</arg>
+<arg>${email[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200915 14:32:44.002" endtime="20200915 14:32:44.002"></status>
+</kw>
+<status status="PASS" starttime="20200915 14:32:43.942" endtime="20200915 14:32:44.002"></status>
+</kw>
+<kw name="${i} = 4" type="foritem">
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json}</arg>
+<arg>$.data[${keys[${i}]}].['email']</arg>
+</arguments>
+<assign>
+<var>${email}</var>
+</assign>
+<msg timestamp="20200915 14:32:44.062" level="INFO">${email} = ['gavin@digi.me']</msg>
+<status status="PASS" starttime="20200915 14:32:44.002" endtime="20200915 14:32:44.062"></status>
+</kw>
+<kw name="Append To List" library="Collections">
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<arguments>
+<arg>${emails}</arg>
+<arg>${email[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200915 14:32:44.062" endtime="20200915 14:32:44.062"></status>
+</kw>
+<status status="PASS" starttime="20200915 14:32:44.002" endtime="20200915 14:32:44.062"></status>
+</kw>
+<kw name="${i} = 5" type="foritem">
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json}</arg>
+<arg>$.data[${keys[${i}]}].['email']</arg>
+</arguments>
+<assign>
+<var>${email}</var>
+</assign>
+<msg timestamp="20200915 14:32:44.112" level="INFO">${email} = ['andrew@digi.me']</msg>
+<status status="PASS" starttime="20200915 14:32:44.062" endtime="20200915 14:32:44.112"></status>
+</kw>
+<kw name="Append To List" library="Collections">
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<arguments>
+<arg>${emails}</arg>
+<arg>${email[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200915 14:32:44.112" endtime="20200915 14:32:44.122"></status>
+</kw>
+<status status="PASS" starttime="20200915 14:32:44.062" endtime="20200915 14:32:44.122"></status>
+</kw>
+<kw name="${i} = 6" type="foritem">
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json}</arg>
+<arg>$.data[${keys[${i}]}].['email']</arg>
+</arguments>
+<assign>
+<var>${email}</var>
+</assign>
+<msg timestamp="20200915 14:32:44.172" level="INFO">${email} = ['aida@digi.me']</msg>
+<status status="PASS" starttime="20200915 14:32:44.122" endtime="20200915 14:32:44.172"></status>
+</kw>
+<kw name="Append To List" library="Collections">
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<arguments>
+<arg>${emails}</arg>
+<arg>${email[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200915 14:32:44.172" endtime="20200915 14:32:44.172"></status>
+</kw>
+<status status="PASS" starttime="20200915 14:32:44.122" endtime="20200915 14:32:44.172"></status>
+</kw>
+<status status="PASS" starttime="20200915 14:32:43.762" endtime="20200915 14:32:44.172"></status>
+</kw>
+<kw name="Get Value From User" library="Dialogs">
+<doc>Pauses test execution and asks user to input a value.</doc>
+<arguments>
+<arg>Input user name</arg>
+</arguments>
+<assign>
+<var>${username}</var>
+</assign>
+<msg timestamp="20200915 14:32:48.882" level="INFO">${username} = dcorovic123@gmail.com</msg>
+<status status="PASS" starttime="20200915 14:32:44.172" endtime="20200915 14:32:48.882"></status>
+</kw>
+<kw name="Get Value From User" library="Dialogs">
+<doc>Pauses test execution and asks user to input a value.</doc>
+<arguments>
+<arg>Input password</arg>
+<arg>hidden=yes</arg>
+</arguments>
+<assign>
+<var>${password}</var>
+</assign>
+<msg timestamp="20200915 14:32:55.673" level="INFO">${password} = elektrotehnika93</msg>
+<status status="PASS" starttime="20200915 14:32:48.882" endtime="20200915 14:32:55.673"></status>
+</kw>
+<kw name="${i} IN RANGE [ ${number} ]" type="for">
+<kw name="${i} = 0" type="foritem">
+<kw name="Send Mail" library="Email">
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>dcorovic123@gmail.com</arg>
+</arguments>
+<msg timestamp="20200915 14:33:02.663" level="INFO">Login success</msg>
+<status status="PASS" starttime="20200915 14:32:55.683" endtime="20200915 14:33:02.663"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${i}</arg>
+</arguments>
+<status status="PASS" starttime="20200915 14:33:02.663" endtime="20200915 14:33:02.663"></status>
+</kw>
+<status status="PASS" starttime="20200915 14:32:55.683" endtime="20200915 14:33:02.663"></status>
+</kw>
+<kw name="${i} = 1" type="foritem">
+<kw name="Send Mail" library="Email">
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>dcorovic123@gmail.com</arg>
+</arguments>
+<msg timestamp="20200915 14:33:09.053" level="INFO">Login success</msg>
+<status status="PASS" starttime="20200915 14:33:02.663" endtime="20200915 14:33:09.053"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${i}</arg>
+</arguments>
+<status status="PASS" starttime="20200915 14:33:09.053" endtime="20200915 14:33:09.053"></status>
+</kw>
+<status status="PASS" starttime="20200915 14:33:02.663" endtime="20200915 14:33:09.053"></status>
+</kw>
+<kw name="${i} = 2" type="foritem">
+<kw name="Send Mail" library="Email">
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>dcorovic123@gmail.com</arg>
+</arguments>
+<msg timestamp="20200915 14:33:15.483" level="INFO">Login success</msg>
+<status status="PASS" starttime="20200915 14:33:09.053" endtime="20200915 14:33:15.483"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${i}</arg>
+</arguments>
+<status status="PASS" starttime="20200915 14:33:15.483" endtime="20200915 14:33:15.483"></status>
+</kw>
+<status status="PASS" starttime="20200915 14:33:09.053" endtime="20200915 14:33:15.483"></status>
+</kw>
+<kw name="${i} = 3" type="foritem">
+<kw name="Send Mail" library="Email">
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>dcorovic123@gmail.com</arg>
+</arguments>
+<msg timestamp="20200915 14:33:22.343" level="INFO">Login success</msg>
+<status status="PASS" starttime="20200915 14:33:15.493" endtime="20200915 14:33:22.343"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${i}</arg>
+</arguments>
+<status status="PASS" starttime="20200915 14:33:22.353" endtime="20200915 14:33:22.353"></status>
+</kw>
+<status status="PASS" starttime="20200915 14:33:15.483" endtime="20200915 14:33:22.353"></status>
+</kw>
+<kw name="${i} = 4" type="foritem">
+<kw name="Send Mail" library="Email">
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>dcorovic123@gmail.com</arg>
+</arguments>
+<msg timestamp="20200915 14:33:29.205" level="INFO">Login success</msg>
+<status status="PASS" starttime="20200915 14:33:22.353" endtime="20200915 14:33:29.205"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${i}</arg>
+</arguments>
+<status status="PASS" starttime="20200915 14:33:29.205" endtime="20200915 14:33:29.205"></status>
+</kw>
+<status status="PASS" starttime="20200915 14:33:22.353" endtime="20200915 14:33:29.205"></status>
+</kw>
+<kw name="${i} = 5" type="foritem">
+<kw name="Send Mail" library="Email">
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>dcorovic123@gmail.com</arg>
+</arguments>
+<msg timestamp="20200915 14:33:35.975" level="INFO">Login success</msg>
+<status status="PASS" starttime="20200915 14:33:29.205" endtime="20200915 14:33:35.975"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${i}</arg>
+</arguments>
+<status status="PASS" starttime="20200915 14:33:35.975" endtime="20200915 14:33:35.975"></status>
+</kw>
+<status status="PASS" starttime="20200915 14:33:29.205" endtime="20200915 14:33:35.975"></status>
+</kw>
+<kw name="${i} = 6" type="foritem">
+<kw name="Send Mail" library="Email">
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+<arg>dcorovic123@gmail.com</arg>
+</arguments>
+<msg timestamp="20200915 14:33:42.415" level="INFO">Login success</msg>
+<status status="PASS" starttime="20200915 14:33:35.975" endtime="20200915 14:33:42.425"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${i}</arg>
+</arguments>
+<status status="PASS" starttime="20200915 14:33:42.425" endtime="20200915 14:33:42.425"></status>
+</kw>
+<status status="PASS" starttime="20200915 14:33:35.975" endtime="20200915 14:33:42.425"></status>
+</kw>
+<status status="PASS" starttime="20200915 14:32:55.683" endtime="20200915 14:33:42.425"></status>
+</kw>
+<status status="PASS" starttime="20200915 14:32:43.752" endtime="20200915 14:33:42.425" critical="yes"></status>
+</test>
+<status status="PASS" starttime="20200915 14:32:43.392" endtime="20200915 14:33:42.435"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0">Critical Tests</stat>
+<stat pass="1" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" id="s1" name="Email">Email</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

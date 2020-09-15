@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.2 (Python 3.8.5 on win32)" generated="20200915 15:00:45.323" rpa="false">
+<suite id="s1" name="TC Request" source="C:\Users\Ćorović\PycharmProjects\APIAutomation\TestCasesWithDataGenerator\TC_Request.robot">
+<test id="s1-t1" name="Test_Cases">
+<kw name="Get Faker User Name" library="TestData">
+<assign>
+<var>${username}</var>
+</assign>
+<msg timestamp="20200915 15:00:47.473" level="INFO">${username} = jamiehenderson</msg>
+<status status="PASS" starttime="20200915 15:00:47.473" endtime="20200915 15:00:47.473"></status>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<doc>Verifies that the given item is not empty.</doc>
+<arguments>
+<arg>${username}</arg>
+</arguments>
+<msg timestamp="20200915 15:00:47.473" level="INFO">Length is 14</msg>
+<status status="PASS" starttime="20200915 15:00:47.473" endtime="20200915 15:00:47.473"></status>
+</kw>
+<kw name="Get Faker Password" library="TestData">
+<assign>
+<var>${password}</var>
+</assign>
+<msg timestamp="20200915 15:00:47.483" level="INFO">${password} = x)@u4VuOMl</msg>
+<status status="PASS" starttime="20200915 15:00:47.473" endtime="20200915 15:00:47.483"></status>
+</kw>
+<kw name="Should Not Be Empty" library="BuiltIn">
+<doc>Verifies that the given item is not empty.</doc>
+<arguments>
+<arg>${password}</arg>
+</arguments>
+<msg timestamp="20200915 15:00:47.483" level="INFO">Length is 10</msg>
+<status status="PASS" starttime="20200915 15:00:47.483" endtime="20200915 15:00:47.483"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>AddData</arg>
+<arg>${base_url}</arg>
+</arguments>
+<msg timestamp="20200915 15:00:47.483" level="INFO">Creating Session using : alias=AddData, url=http://srv.kemoke.net:5000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200915 15:00:47.483" endtime="20200915 15:00:47.483"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>username=${username}</arg>
+<arg>password=${password}</arg>
+</arguments>
+<assign>
+<var>${body}</var>
+</assign>
+<msg timestamp="20200915 15:00:47.483" level="INFO">${body} = {'username': 'jamiehenderson', 'password': 'x)@u4VuOMl'}</msg>
+<status status="PASS" starttime="20200915 15:00:47.483" endtime="20200915 15:00:47.483"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+</arguments>
+<assign>
+<var>${header}</var>
+</assign>
+<msg timestamp="20200915 15:00:47.483" level="INFO">${header} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20200915 15:00:47.483" endtime="20200915 15:00:47.483"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>AddData</arg>
+<arg>api/users</arg>
+<arg>data=${body}</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200915 15:00:48.023" level="INFO">POST Request : url=http://srv.kemoke.net:5000/api/users 
+ path_url=/api/users 
+ headers={'User-Agent': 'python-requests/2.24.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '56'} 
+ body={"username": "jamiehenderson", "password": "x)@u4VuOMl"} 
+ </msg>
+<msg timestamp="20200915 15:00:48.023" level="INFO">POST Response : url=http://srv.kemoke.net:5000/api/users 
+ status=201, reason=CREATED 
+ body={
+  "id": 33, 
+  "username": "jamiehenderson"
+}
+ 
+ </msg>
+<msg timestamp="20200915 15:00:48.023" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20200915 15:00:47.483" endtime="20200915 15:00:48.023"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response.content}</arg>
+</arguments>
+<status status="PASS" starttime="20200915 15:00:48.023" endtime="20200915 15:00:48.033"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+</arguments>
+<msg timestamp="20200915 15:00:48.033" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200915 15:00:48.033" endtime="20200915 15:00:48.033"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${response.json()['id']}</arg>
+</arguments>
+<assign>
+<var>${id}</var>
+</assign>
+<msg timestamp="20200915 15:00:48.033" level="INFO">${id} = 33</msg>
+<status status="PASS" starttime="20200915 15:00:48.033" endtime="20200915 15:00:48.043"></status>
+</kw>
+<kw name="User Name" library="FakerLibrary">
+<assign>
+<var>${newuser}</var>
+</assign>
+<msg timestamp="20200915 15:00:48.043" level="INFO">${newuser} = michellemorris</msg>
+<status status="PASS" starttime="20200915 15:00:48.043" endtime="20200915 15:00:48.043"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>username=${newuser}</arg>
+<arg>password=${password}</arg>
+</arguments>
+<assign>
+<var>${body}</var>
+</assign>
+<msg timestamp="20200915 15:00:48.043" level="INFO">${body} = {'username': 'michellemorris', 'password': 'x)@u4VuOMl'}</msg>
+<status status="PASS" starttime="20200915 15:00:48.043" endtime="20200915 15:00:48.043"></status>
+</kw>
+<kw name="Put Request" library="RequestsLibrary">
+<doc>Send a PUT request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>AddData</arg>
+<arg>api/users/${id}</arg>
+<arg>data=${body}</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${response1}</var>
+</assign>
+<msg timestamp="20200915 15:00:48.583" level="INFO">PUT Request : url=http://srv.kemoke.net:5000/api/users/33 
+ path_url=/api/users/33 
+ headers={'User-Agent': 'python-requests/2.24.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '56'} 
+ body={"username": "michellemorris", "password": "x)@u4VuOMl"} 
+ </msg>
+<msg timestamp="20200915 15:00:48.583" level="INFO">PUT Response : url=http://srv.kemoke.net:5000/api/users/33 
+ status=201, reason=CREATED 
+ body={
+  "id": 33, 
+  "username": "michellemorris"
+}
+ 
+ </msg>
+<msg timestamp="20200915 15:00:48.583" level="INFO">${response1} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20200915 15:00:48.043" endtime="20200915 15:00:48.583"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response1.content}</arg>
+</arguments>
+<status status="PASS" starttime="20200915 15:00:48.583" endtime="20200915 15:00:48.583"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response1.status_code}</arg>
+<arg>201</arg>
+</arguments>
+<msg timestamp="20200915 15:00:48.593" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200915 15:00:48.593" endtime="20200915 15:00:48.593"></status>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${newuser}</arg>
+<arg>${password}</arg>
+</arguments>
+<assign>
+<var>${auth}</var>
+</assign>
+<msg timestamp="20200915 15:00:48.603" level="INFO">${auth} = ['michellemorris', 'x)@u4VuOMl']</msg>
+<status status="PASS" starttime="20200915 15:00:48.593" endtime="20200915 15:00:48.603"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<arg>auth=${auth}</arg>
+</arguments>
+<msg timestamp="20200915 15:00:48.603" level="INFO">Creating Session using : alias=mysession, url=http://srv.kemoke.net:5000, headers={},                     cookies={}, auth=&lt;requests.auth.HTTPBasicAuth object at 0x03C455B0&gt;, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200915 15:00:48.603" endtime="20200915 15:00:48.603"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>mysession</arg>
+<arg>api/token</arg>
+</arguments>
+<assign>
+<var>${response2}</var>
+</assign>
+<msg timestamp="20200915 15:00:49.153" level="INFO">GET Request : url=http://srv.kemoke.net:5000/api/token 
+ path_url=/api/token 
+ headers={'User-Agent': 'python-requests/2.24.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Basic bWljaGVsbGVtb3JyaXM6eClAdTRWdU9NbA=='} 
+ body=None 
+ </msg>
+<msg timestamp="20200915 15:00:49.153" level="INFO">GET Response : url=http://srv.kemoke.net:5000/api/token 
+ status=200, reason=OK 
+ body={
+  "duration": 600, 
+  "token": "eyJhbGciOiJIUzI1NiIsImlhdCI6MTYwMDE3NDg1MSwiZXhwIjoxNjAwMTc1NDUxfQ.eyJpZCI6MzN9.KdfNlvd5mBwLBW0tZjH8BjUw-3eHFkyiYZJzUaHo-NE"
+}
+ 
+ </msg>
+<msg timestamp="20200915 15:00:49.153" level="INFO">${response2} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20200915 15:00:48.603" endtime="20200915 15:00:49.153"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response2.content}</arg>
+</arguments>
+<status status="PASS" starttime="20200915 15:00:49.163" endtime="20200915 15:00:49.163"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response2.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20200915 15:00:49.173" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200915 15:00:49.163" endtime="20200915 15:00:49.173"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${response2.json()['token']}</arg>
+</arguments>
+<assign>
+<var>${token}</var>
+</assign>
+<msg timestamp="20200915 15:00:49.173" level="INFO">${token} = eyJhbGciOiJIUzI1NiIsImlhdCI6MTYwMDE3NDg1MSwiZXhwIjoxNjAwMTc1NDUxfQ.eyJpZCI6MzN9.KdfNlvd5mBwLBW0tZjH8BjUw-3eHFkyiYZJzUaHo-NE</msg>
+<status status="PASS" starttime="20200915 15:00:49.173" endtime="20200915 15:00:49.173"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>username= ${token}</arg>
+</arguments>
+<assign>
+<var>${body}</var>
+</assign>
+<msg timestamp="20200915 15:00:49.183" level="INFO">${body} = {'username': ' eyJhbGciOiJIUzI1NiIsImlhdCI6MTYwMDE3NDg1MSwiZXhwIjoxNjAwMTc1NDUxfQ.eyJpZCI6MzN9.KdfNlvd5mBwLBW0tZjH8BjUw-3eHFkyiYZJzUaHo-NE'}</msg>
+<status status="PASS" starttime="20200915 15:00:49.173" endtime="20200915 15:00:49.183"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>mysession</arg>
+<arg>api/resource</arg>
+<arg>data={body}</arg>
+</arguments>
+<assign>
+<var>${response3}</var>
+</assign>
+<msg timestamp="20200915 15:00:49.723" level="INFO">GET Request : url=http://srv.kemoke.net:5000/api/resource 
+ path_url=/api/resource 
+ headers={'User-Agent': 'python-requests/2.24.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '6', 'Authorization': 'Basic bWljaGVsbGVtb3JyaXM6eClAdTRWdU9NbA=='} 
+ body={body} 
+ </msg>
+<msg timestamp="20200915 15:00:49.723" level="INFO">GET Response : url=http://srv.kemoke.net:5000/api/resource 
+ status=200, reason=OK 
+ body={
+  "data": "Hello, michellemorris!"
+}
+ 
+ </msg>
+<msg timestamp="20200915 15:00:49.733" level="INFO">${response3} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20200915 15:00:49.183" endtime="20200915 15:00:49.733"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response3.content}</arg>
+</arguments>
+<status status="PASS" starttime="20200915 15:00:49.733" endtime="20200915 15:00:49.733"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response3.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20200915 15:00:49.743" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200915 15:00:49.743" endtime="20200915 15:00:49.743"></status>
+</kw>
+<kw name="Delete Request" library="RequestsLibrary">
+<doc>Send a DELETE request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>mysession</arg>
+<arg>api/users/${id}</arg>
+</arguments>
+<assign>
+<var>${response4}</var>
+</assign>
+<msg timestamp="20200915 15:00:49.853" level="INFO">DELETE Request : url=http://srv.kemoke.net:5000/api/users/33 
+ path_url=/api/users/33 
+ headers={'User-Agent': 'python-requests/2.24.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0', 'Authorization': 'Basic bWljaGVsbGVtb3JyaXM6eClAdTRWdU9NbA=='} 
+ body=None 
+ </msg>
+<msg timestamp="20200915 15:00:49.853" level="INFO">DELETE Response : url=http://srv.kemoke.net:5000/api/users/33 
+ status=200, reason=OK 
+ body={
+  "status": "User successfully deleted!"
+}
+ 
+ </msg>
+<msg timestamp="20200915 15:00:49.853" level="INFO">${response4} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20200915 15:00:49.743" endtime="20200915 15:00:49.853"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${response4.content}</arg>
+</arguments>
+<status status="PASS" starttime="20200915 15:00:49.853" endtime="20200915 15:00:49.853"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response4.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20200915 15:00:49.853" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20200915 15:00:49.853" endtime="20200915 15:00:49.853"></status>
+</kw>
+<status status="PASS" starttime="20200915 15:00:47.473" endtime="20200915 15:00:49.853" critical="yes"></status>
+</test>
+<status status="PASS" starttime="20200915 15:00:45.323" endtime="20200915 15:00:49.853"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0">Critical Tests</stat>
+<stat pass="1" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" id="s1" name="TC Request">TC Request</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

@@ -1,0 +1,47 @@
+
+{
+	"data": {
+	  "a": {
+    		"name": "Edin",
+    		"email": "edin@digi.me",
+    		"admin": "true",
+    		"company": "digi.me"
+	}, 
+	"b": {
+		"name": "Alen",
+		"email": "alen.galesic@digi.me",
+		"admin": "false",
+		"company": "digi.me"
+	}, 
+	"c": {
+		"name": "Ermin",
+		"email": "ermin@digi.me",
+		"admin": "false",
+		"company": "digi.me"
+	}, 
+	"d": {
+		"name": "Enver",
+		"email": "enver@digi.me",
+		"admin": "true",
+		"company": "digi.me"
+	}, 
+	"e": {
+		"name": "Gavin",
+		"email": "gavin@digi.me",
+		"admin": "true",
+		"company": "digi.me"
+	}, 
+	"f": {
+		"name": "Andrew",
+		"email": "andrew@digi.me",
+		"admin": "true",
+		"company": "digi.me"
+	}, 
+	"g": {
+		"name": "Aida",
+		"email": "aida@digi.me",
+		"admin": "false",
+		"company": "digi.me"
+	}
+	}
+}
